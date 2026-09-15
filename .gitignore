@@ -1,0 +1,32 @@
+# /*
+#
+# # Individual Files in root
+# !.gitignore
+# #!.bashrc
+# !.zshrc
+#
+# # ~/.config Directory
+# !.config
+# /.config/*
+#
+# # Individual Files in ~/.config
+# !.config/xdg-terminals.list
+# !.config/gnome-xdg-terminals.list
+#
+# # ~/.config/nvim Directory
+# !.config/nvim
+# /.config/nvim/*
+# !.config/nvim/init.lua
+# !.config/nvim/lua
+# !.config/nvim/snippets
+#
+# # ~/.config/kitty Directory
+# !.config/kitty
+# /.config/kitty/*
+# !.config/kitty/kitty.conf
+#
+# # ~/.config/fish Directory
+# !.config/fish
+#
+# # ~/.config/zathura Directory
+# !.config/zathura
