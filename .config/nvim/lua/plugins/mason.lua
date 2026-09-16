@@ -14,12 +14,14 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"stylua",
-				-- "shfmt",
-				"yamlls",
-				"texlab",
-				"lua_ls",
-				"matlab_ls",
+				"lua_ls", -- lsp: lua
+				"stylua", -- fmt: lua
+				"bashls", -- lsp: zsh bash
+				"shfmt", -- fmt: zsh bash
+				"yamlls", -- lsp: YAML
+				"texlab", -- lsp: latex
+				"marksman", -- lsp: markdown
+				"matlab_ls", -- lsp: matlab
 			},
 		},
 	},
