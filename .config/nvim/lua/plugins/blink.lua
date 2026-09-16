@@ -29,12 +29,28 @@ return {
 				},
 				max_items = 4,
 			},
+			menu = {
+				draw = {
+					columns = { -- this part defines what is in the menu
+						{ "kind_icon", gap = 1 },
+						{ "label" },
+					},
+					-- components = { -- menu options
+					-- 	label = {
+					-- 		width = { max = 15 },
+					-- 	},
+					-- label_description = { (UNNECESSARY FOR NOW)
+					-- 	width = { max = 15 },
+					-- },
+					-- },
+				},
+			},
 			ghost_text = { enabled = false },
 		},
 		-- (Default) list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "snippets" }, -- { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer" },
 			per_filetype = {
 				tex = { "snippets", "lsp", "path" },
 			},

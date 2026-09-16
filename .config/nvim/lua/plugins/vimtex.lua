@@ -11,12 +11,14 @@ return {
 
 		vim.g.vimtex_indent_enabled = 1 -- disable because latexindent is used
 		vim.g.vimtex_indent_on_ampersands = 0
+		vim.g.vimtex_mappings_enabled = 1
 		vim.g.vimtex_complete_enabled = 0
 		vim.g.vimtex_imaps_enabled = 0
-		vim.g.vimtex_mappings_override_existing = 1
+		vim.g.vimtex_mappings_override_existing = 0
 		vim.g.vimtex_mappings_prefix = "<localleader>"
 
-		--vim.cmd("let g:vimtex_mappings_override_existing = 1")
+		-- keybindings are in /ftplugin/tex.lua
+
 		vim.cmd([[
 	     let g:vimtex_env_toggle_math_map = {
 	         \ '$': '\[',
@@ -24,10 +26,6 @@ return {
 	         \ 'align' : 'equation',
 	         \ 'equation': '$',
 	         \}]])
-		vim.cmd("nmap csm <plug>(vimtex-env-change-math)")
-		vim.cmd("nmap dsm <plug>(vimtex-env-delete-math)")
-		vim.cmd("nmap tsm <plug>(vimtex-env-toggle-math)")
-		vim.cmd("nmap tss <plug>(vimtex-cmd-toggle-star-agn)")
 		vim.cmd("let g:vimtex_quickfix_ignore_filters = ['Label(s) may have changed']")
 		vim.g.vimtex_mappings_disable = { ["n"] = { "K" } }
 		-- disable `K` as it conflicts with LSP hover

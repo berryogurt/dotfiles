@@ -16,21 +16,3 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*/snippets/**.lua",
 	command = "LuaSnipLoad",
 })
-
--- Define tex open function
-local tex = function()
-	vim.opt.timeoutlen = 3000
-	-- vim.keymap.set("i", "<S-BS>", "<esc>I")
-	-- vim.keymap.set("i", "<S-CR>", "<esc>A")
-	vim.keymap.set("i", "(", "(", { buffer = true })
-	vim.keymap.set("i", "{", "{", { buffer = true })
-	vim.keymap.set("i", "[", "[", { buffer = true })
-	vim.keymap.set("i", '"', '"', { buffer = true })
-	vim.keymap.set("i", "$", "$", { buffer = true })
-	vim.keymap.set("i", "'", "'", { buffer = true })
-	vim.keymap.set("n", "S", "", { buffer = true })
-	pcall(vim.keymap.del, "n", "&") -- Add ampersand insertion shortcut
-	vim.keymap.set("n", "&", "i&<esc>", { buffer = true })
-end
--- Set auto command
-vim.api.nvim_create_autocmd("Filetype", { pattern = "tex", callback = tex })

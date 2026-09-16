@@ -5,3 +5,7 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty 
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t' # GTK accelerator syntax; keep the angle brackets literal
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab false              # true or false
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+
+
+# add minimize and maximize buttons
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"

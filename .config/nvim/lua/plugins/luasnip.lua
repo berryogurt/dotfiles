@@ -4,8 +4,9 @@ return {
 		version = "v2.*",
 		build = "make install_jsregexp",
 		opts = {
-			history = false, -- prevent jumping to old snipets
-			delete_check_events = "TextChanged,InsertLeave",
+			history = true, -- prevent jumping to old snipets
+			-- delete_check_events = "TextChanged,InsertLeave",
+			-- region_check_events = "InsertEnter",
 			update_events = "TextChanged,TextChangedI",
 			enable_autosnippets = true,
 			fs_event_providers = {

@@ -44,3 +44,6 @@ vim.diagnostic.config({
 	underline = true,
 	update_in_insert = false,
 })
+
+-- SET HIGHLIGHT COLOR FOR BLINK.CMP
+vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#414B50" })

@@ -14,25 +14,6 @@ end
 return {
 	s(
 		{
-			trig = "{",
-			name = "Braces",
-			wordTrig = false,
-			regTrig = false,
-			snippetType = "autosnippet",
-			priority = 1000,
-		},
-		fmta(
-			[[
-        {<>}<>
-      ]],
-			{
-				i(1),
-				i(0),
-			}
-		)
-	),
-	s(
-		{
 			trig = "\\{",
 			name = "Visible Braces",
 			wordTrig = true,
@@ -45,24 +26,6 @@ return {
 			[[
           \{<>\}<>
         ]],
-			{
-				i(1),
-				i(0),
-			}
-		)
-	),
-	s(
-		{
-			trig = "[",
-			name = "Bracket",
-			wordTrig = false,
-			snippetType = "autosnippet",
-			priority = 1000,
-		},
-		fmta(
-			[=[
-        [<>]<>
-        ]=],
 			{
 				i(1),
 				i(0),
@@ -85,21 +48,6 @@ return {
 			{ i(1), i(0) }
 		),
 		{}
-	),
-	s(
-		{
-			trig = "(",
-			name = "Parentheses",
-			wordTrig = false,
-			snippetType = "autosnippet",
-			priority = 1000,
-		},
-		fmta(
-			[[
-    (<>)<>
-    ]],
-			{ i(1), i(0) }
-		)
 	),
 	s(
 		{

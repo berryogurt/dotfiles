@@ -1,5 +1,13 @@
 -- KEYMAPS
+local wk = require("which-key") -- Definining all keymaps with which-key
 ---@diagnostic disable global: vim
+
+-- Leave Bracket Snippets for LuaSnip
+vim.keymap.set("i", "(", "(", { buffer = true })
+vim.keymap.set("i", "{", "{", { buffer = true })
+vim.keymap.set("i", "[", "[", { buffer = true })
+vim.keymap.set("i", '"', '"', { buffer = true })
+vim.keymap.set("i", "'", "'", { buffer = true })
 
 -- Move by visual lines unless a count is specified (e.g., 5j moves 5 logical lines)
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true }) -- Apply to normal and select modes ONLY to move up and down regardless of line wrapping
@@ -26,7 +34,14 @@ vim.keymap.set("n", "<Del>", "")
 vim.keymap.set("n", "q", "<Nop>", { noremap = true, silent = true })
 
 -- Change Macro key to something else
-vim.keymap.set("n", "<leader>q", "q", { noremap = true, desc = "Macro" })
+wk.add({
+	{ "<leader>cq", "q", desc = "Define Macro", icon = { icon = "", color = "red" } },
+})
+
+-- UNDOTREE
+wk.add({
+	{ "<leader>u", "lua require('undotree').toggle()", desc = "Undotree", icon = { icon = "", color = "grey" } },
+})
 
 -- Disable Ctrl + Z
 vim.keymap.set("n", "<c-z>", "<nop>", { noremap = true })
@@ -38,17 +53,14 @@ vim.keymap.del("i", "<S-Tab>")
 vim.keymap.del("s", "<S-Tab>")
 
 -- Snacks Notification History
-vim.keymap.set("n", "<leader>nn", function()
+vim.keymap.set("n", "<leader>n", function()
 	Snacks.picker.notifications()
 end, { desc = "Notification History" })
 
--- Snacks notifier
--- vim.keymap.set("n", "<leader>nh", function()
--- 	Snacks.notifier.show_history()
--- end, { desc = "Notification History" })
-
 -- Mason
-vim.keymap.set("n", "<leader>cm", "<cmd>Mason<cr>", { desc = "Mason" })
+wk.add({
+	{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason", icon = { icon = "󰘤", color = "red" } },
+})
 
 -- Window Navigation up down left right
 vim.keymap.set("i", "<c-j>", "<cmd>winc j<cr><esc>", { desc = "Navigate to window above" })
@@ -116,3 +128,59 @@ vim.keymap.set(
 ) -- LSP defns and refs
 vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List" }) -- Location Diagnostics list
 vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List" }) -- QuickFix List
+
+-- -- VimTeX
+-- vim.cmd("nmap csm <plug>(vimtex-env-change-math)")
+-- vim.cmd("nmap dsm <plug>(vimtex-env-delete-math)")
+-- vim.keymap.set("n", "<localleader>l", "<plug>(vimtex-compile)", { desc = "Start Compiler" }) -- Start Compiler
+-- vim.keymap.set("n", "tsm", "<plug>(vimtex-env-toggle-math)", { desc = "Toggle Math" }) -- Toggle surrounding math environment
+-- vim.cmd("nmap tss <plug>(vimtex-cmd-toggle-star-agn)")
+--
+-- wk.add({
+-- 	{
+-- 		"<localleader>l",
+-- 		"<plug>(vimtex-compile)",
+-- 		desc = "Compile",
+-- 		icon = { icon = "", color = "green" },
+-- 		cat = "extension",
+-- 		group = "vimtex",
+-- 	},
+-- })
+
+-- WHICHKEY COLORS: `azure`, `blue`, `cyan`, `green`, `grey`, `orange`, `purple`, `red`, `yellow`
+
+-- WhichKey groups
+wk.add({
+	{
+		"<leader>x",
+		group = "trouble",
+		icon = { icon = "", color = "red", cat = "extension", name = "trouble" },
+	},
+	{
+		"<leader>q",
+		group = "session",
+		icon = { icon = "", color = "blue", cat = "extension", name = "persistence" },
+	},
+	{
+		"<leader>gh",
+		group = "git actions",
+		icon = { icon = "", color = "orange", cat = "extension", name = "git" },
+	},
+	{
+		"<leader>s",
+		group = "search",
+		icon = { icon = "", color = "purple" },
+	},
+	{
+		"<leader>f",
+		desc = "find",
+		icon = { icon = "", color = "yellow" },
+	},
+	{
+		"<leader>c",
+		desc = "commands",
+		icon = { icon = "", color = "red" },
+	},
+	{ "<leader>b", desc = "buffer" },
+	{ "<leader>w", desc = "window" },
+})

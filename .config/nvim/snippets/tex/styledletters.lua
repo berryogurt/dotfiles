@@ -405,7 +405,7 @@ return {
 	),
 	s(
 		{
-			trig = "dot(%a)",
+			trig = "dot(.)",
 			name = "Dot (right)",
 			regTrig = true,
 			wordTrig = false,
@@ -426,7 +426,7 @@ return {
 	),
 	s(
 		{
-			trig = "(%a)dot",
+			trig = "([=%a])dot",
 			name = "Dot",
 			regTrig = true,
 			wordTrig = false,
@@ -435,7 +435,7 @@ return {
 		},
 		fmta(
 			[[
-        \dot{<>}
+        \dot{<>} 
       ]],
 			{
 				f(function(_, snip)
