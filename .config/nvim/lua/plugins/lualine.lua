@@ -2,14 +2,30 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			theme = "everforest",
-		},
+		config = function()
+			local function vimicon()
+				return [[]]
+			end
+			require("lualine").setup({
+				options = {
+					component_separators = { left = "", right = "" },
+					section_separators = { left = "", right = "" },
+					-- component_separators = { left = "", right = "" },
+					-- section_separators = { left = "", right = "" },
+				},
+				sections = {
+					lualine_a = {
+						{ vimicon, separator = { left = "", right = "" } },
+						{ "mode", separator = { left = "", right = "" } },
+					},
+				},
+			})
+		end,
 	},
 }
 
 --[[
--- DEFAULT CONFIG 
+-- default config 
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -30,16 +46,16 @@ require('lualine').setup {
       winbar = 1000,
       refresh_time = 16, -- ~60fps
       events = {
-        'WinEnter',
-        'BufEnter',
-        'BufWritePost',
-        'SessionLoadPost',
-        'FileChangedShellPost',
-        'VimResized',
-        'Filetype',
-        'CursorMoved',
-        'CursorMovedI',
-        'ModeChanged',
+        'winenter',
+        'bufenter',
+        'bufwritepost',
+        'sessionloadpost',
+        'filechangedshellpost',
+        'vimresized',
+        'filetype',
+        'cursormoved',
+        'cursormovedi',
+        'modechanged',
       },
     }
   },
