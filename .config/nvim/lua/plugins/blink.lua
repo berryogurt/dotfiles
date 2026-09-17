@@ -30,6 +30,7 @@ return {
 				max_items = 4,
 			},
 			menu = {
+				border = "single",
 				draw = {
 					columns = { -- this part defines what is in the menu
 						{ "kind_icon", gap = 1 },
