@@ -137,6 +137,10 @@ echo "--- Setting Symlinks for dotfiles ---"
 echo "--- Setting Git Settings ---"
 . ./src/git-settings.sh
 
+# --- Install Oh-My-Zsh
+echo "--- Installing oh my zsh ---"
+. ./src/zsh.sh
+
 # --- Set Gnome Options ---
 echo "--- Setting Gnome Options ---"
 . ./src/gnome-settings.sh

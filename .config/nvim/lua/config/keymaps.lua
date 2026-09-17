@@ -30,9 +30,6 @@ vim.keymap.set("i", "<C-CR>", "<esc>o")
 -- unmap delete key in normal mode
 vim.keymap.set("n", "<Del>", "")
 
--- Terminal window
-wk.add({})
-
 -- Disable binds
 vim.keymap.set("n", "<c-z>", "<nop>", { noremap = true })
 vim.keymap.set("n", "q", "<Nop>", { noremap = true, silent = true })
@@ -53,7 +50,6 @@ wk.add({
 		end,
 		desc = "Close Special Window",
 	},
-
 	{
 		mode = { "i", "s" },
 		{ "<tab>", "<nop>" },
@@ -70,11 +66,6 @@ wk.add({
 vim.keymap.set("n", "<leader>n", function()
 	Snacks.picker.notifications()
 end, { desc = "Notification History" })
-
--- Mason
-wk.add({
-	{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason", icon = { icon = "󰘤", color = "red" } },
-})
 
 -- NAVIGATION
 -- HJKL faster
@@ -101,9 +92,6 @@ vim.keymap.set({ "n", "i" }, "<c-right>", "<cmd>vert res +1<cr>", { desc = "Wind
 vim.keymap.set("n", "<leader>ws", "<cmd>split<cr><cmd>winc J<cr>", { desc = "Split Horizontally" })
 vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<cr><cmd>winc L<cr>", { desc = "Split Vertically" })
 vim.keymap.set("n", "<leader>wq", "<cmd>q<cr>", { desc = "Close Window" })
-
--- Buffer maps
-wk.add({})
 
 -- Snacks Picker
 vim.keymap.set("n", "<leader>fg", function()
@@ -142,16 +130,25 @@ vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Qu
 
 -- WhichKey groups
 wk.add({
+	-- Trouble
 	{
 		"<leader>x",
 		group = "trouble",
 		icon = { icon = "", color = "red", cat = "extension", name = "trouble" },
 	},
+	--
+	--
+	--
+	-- Session
 	{
 		"<leader>q",
 		group = "session",
 		icon = { icon = "", color = "blue", cat = "extension", name = "persistence" },
 	},
+	--
+	--
+	--
+	-- Git
 	{
 		"<leader>g",
 		group = "git actions",
@@ -208,7 +205,7 @@ wk.add({
 		end,
 		desc = "Buffer Picker",
 	},
-  {"<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Other Buffers" }
+	{ "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Other Buffers" },
 	--
 	--
 	--
