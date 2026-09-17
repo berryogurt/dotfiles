@@ -104,5 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias push="git push"
 alias e="exit"
+alias q="exit"
+alias vi="nvim"
+alias vim="nvim"
 
 set -o vi
