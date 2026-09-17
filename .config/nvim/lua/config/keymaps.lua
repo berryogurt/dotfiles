@@ -3,11 +3,11 @@ local wk = require("which-key") -- Definining all keymaps with which-key
 ---@diagnostic disable global: vim
 
 -- Leave Bracket Snippets for LuaSnip
-vim.keymap.set("i", "(", "(", { buffer = true })
-vim.keymap.set("i", "{", "{", { buffer = true })
-vim.keymap.set("i", "[", "[", { buffer = true })
-vim.keymap.set("i", '"', '"', { buffer = true })
-vim.keymap.set("i", "'", "'", { buffer = true })
+-- vim.keymap.set("i", "(", "(", { buffer = true })
+-- vim.keymap.set("i", "{", "{", { buffer = true })
+-- vim.keymap.set("i", "[", "[", { buffer = true })
+-- vim.keymap.set("i", '"', '"', { buffer = true })
+-- vim.keymap.set("i", "'", "'", { buffer = true })
 
 -- Move by visual lines unless a count is specified (e.g., 5j moves 5 logical lines)
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true }) -- Apply to normal and select modes ONLY to move up and down regardless of line wrapping
@@ -30,10 +30,18 @@ vim.keymap.set("i", "<C-CR>", "<esc>o")
 -- unmap delete key in normal mode
 vim.keymap.set("n", "<Del>", "")
 
--- Disable q bind
+-- Terminal window
+wk.add({})
+
+-- Disable binds
+vim.keymap.set("n", "<c-z>", "<nop>", { noremap = true })
 vim.keymap.set("n", "q", "<Nop>", { noremap = true, silent = true })
 wk.add({
-	{
+	{ "q", "<nop>", silent = true },
+	{ "<c-z>", "<nop>", silent = true },
+	{ "<s-j>", "<nop>", silent = true },
+	{ "<s-k>", "<nop>", silent = true },
+	{ -- bind q to close window only if it is not a normal buffer window
 		"q",
 		function()
 			if vim.bo.buftype ~= "" or vim.bo.filetype == "help" then
@@ -45,19 +53,18 @@ wk.add({
 		end,
 		desc = "Close Special Window",
 	},
+
+	{
+		mode = { "i", "s" },
+		{ "<tab>", "<nop>" },
+		{ "<s-tab>", "<nop>" },
+	},
 })
 
 -- UNDOTREE
 wk.add({
 	{ "<leader>u", "lua require('undotree').toggle()", desc = "Undotree", icon = { icon = "", color = "grey" } },
 })
-
--- Disable Ctrl + Z
-vim.keymap.set("n", "<c-z>", "<nop>", { noremap = true })
-
--- Reset tab to avoid conflicts with neovim native completion
-vim.keymap.del({ "i", "s" }, "<Tab>")
-vim.keymap.del({ "i", "s" }, "<S-Tab>")
 
 -- Snacks Notification History
 vim.keymap.set("n", "<leader>n", function()
@@ -69,15 +76,20 @@ wk.add({
 	{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason", icon = { icon = "󰘤", color = "red" } },
 })
 
+-- NAVIGATION
+-- HJKL faster
+wk.add({
+	{ "<c-h>", "5h", desc = "Go 10 Left" },
+	{ "<c-l>", "5l", desc = "Go 10 Right" },
+	{ "<c-j>", "<c-d>", desc = "Page Down" },
+	{ "<c-k>", "<c-u>", desc = "Page Up" },
+})
+
 -- Window Navigation up down left right
-vim.keymap.set("i", "<c-j>", "<cmd>winc j<cr><esc>", { desc = "Navigate to window above" })
-vim.keymap.set("i", "<c-k>", "<cmd>winc k<cr><esc>", { desc = "Navigate to window below" })
-vim.keymap.set("i", "<c-l>", "<cmd>winc l<cr><esc>", { desc = "Navigate to left window" })
-vim.keymap.set("i", "<c-h>", "<cmd>winc h<cr><esc>", { desc = "Navigate to right window" })
-vim.keymap.set("n", "<c-j>", "<cmd>winc j<cr>", { desc = "Navigate to window above" })
-vim.keymap.set("n", "<c-k>", "<cmd>winc k<cr>", { desc = "Navigate to window below" })
-vim.keymap.set("n", "<c-l>", "<cmd>winc l<cr>", { desc = "Navigate to left window" })
-vim.keymap.set("n", "<c-h>", "<cmd>winc h<cr>", { desc = "Navigate to right window" })
+vim.keymap.set({ "i", "t", "n" }, "<a-j>", "<cmd>winc j<cr><esc>", { desc = "Navigate to window above" })
+vim.keymap.set({ "i", "t", "n" }, "<a-k>", "<cmd>winc k<cr><esc>", { desc = "Navigate to window below" })
+vim.keymap.set({ "i", "t", "n" }, "<a-l>", "<cmd>winc l<cr><esc>", { desc = "Navigate to left window" })
+vim.keymap.set({ "i", "t", "n" }, "<a-h>", "<cmd>winc h<cr><esc>", { desc = "Navigate to right window" })
 
 -- Window resizing
 vim.keymap.set({ "n", "i" }, "<c-up>", "<cmd>res +1<cr>", { desc = "Window height +1" })
@@ -91,25 +103,15 @@ vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<cr><cmd>winc L<cr>", { desc = "Sp
 vim.keymap.set("n", "<leader>wq", "<cmd>q<cr>", { desc = "Close Window" })
 
 -- Buffer maps
-vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Navigate to right buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Navigate to right buffer" })
-vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Navigate to left buffer" })
-vim.keymap.set("n", "<S-H>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Navigate to left buffer" })
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete current buffer" })
+wk.add({})
 
 -- Snacks Picker
-vim.keymap.set("n", "<leader>ff", function()
-	Snacks.picker.files()
-end, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>fg", function()
 	Snacks.picker.grep()
 end, { desc = "Live Grep (cwd)" })
 vim.keymap.set("n", "<leader>fr", function()
 	Snacks.picker.recent()
 end, { desc = "Recent Files" })
-vim.keymap.set("n", "<leader>fb", function()
-	Snacks.picker.buffers()
-end, { desc = "Buffers" })
 vim.keymap.set("n", "<leader>fe", function()
 	Snacks.explorer()
 end, { desc = "File Explorer" })
@@ -151,20 +153,37 @@ wk.add({
 		icon = { icon = "", color = "blue", cat = "extension", name = "persistence" },
 	},
 	{
-		"<leader>gh",
+		"<leader>g",
 		group = "git actions",
 		icon = { icon = "", color = "orange", cat = "extension", name = "git" },
 	},
 	{ "<leader>s", group = "search", icon = { icon = "", color = "purple" } },
+	--
+	--
+	--
+	--
+	-- Files
 	{
 		"<leader>f",
-		desc = "find",
-		icon = { icon = "", color = "yellow" },
+		group = "file",
+		icon = { icon = "󰈔", color = "yellow" },
 	},
-	-- commands
+	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File", icon = { icon = "󰝒" } },
+	{
+		"<leader>ff",
+		function()
+			Snacks.picker.files()
+		end,
+		desc = "Find Files",
+		icon = { icon = "" },
+	},
+	--
+	--
+	--
+	-- Commands
 	{
 		"<leader>c",
-		desc = "commands",
+		group = "commands",
 		icon = { icon = "", color = "red" },
 	},
 	{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason", icon = { icon = "󰘤", color = "red" } }, -- Open Mason
@@ -172,9 +191,42 @@ wk.add({
 	{ "<leader>cl", "<cmd>Lazy<cr>", desc = "Lazy", icon = { icon = "", color = "blue" } }, -- Define a keymap
 	{ "<leader>ch", "<cmd>checkhealth<cr>", desc = "Check Health (all)", icon = { icon = "", color = "blue" } }, -- Define a keymap
 	--
+	--
+	--
 	-- Buffer keymaps
-	{ "<leader>b", desc = "buffer" },
+	{ "<leader>b", group = "buffer" },
+	{ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete Buffer" },
+	{ "<leader>bD", "<cmd>bdelete!<cr>", desc = "Delete Buffer Override" },
+	{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Navigate to left buffer" },
+	{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Navigate to right buffer" },
+	{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Navigate to right buffer" },
+	{ "<S-H>", "<cmd>BufferLineCyclePrev<cr>", desc = "Navigate to left buffer" },
+	{
+		"<leader>bb",
+		function()
+			Snacks.picker.buffers()
+		end,
+		desc = "Buffer Picker",
+	},
+  {"<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Other Buffers" }
+	--
+	--
+	--
 	-- Window keymaps
-	{ "<leader>w", desc = "window" },
+	{ "<leader>w", group = "window" },
 	{ "<leader>w=", "<cmd>winc =<cr>", desc = "Align Equally" },
+	--
+	--
+	--
+	-- Terminal
+	{
+		"<leader>t",
+		group = "terminal",
+		icon = { icon = "", color = "red" },
+	},
+	{ "<esc>", "<c-\\><c-n>", mode = "t", desc = "Escape Terminal" },
+	{ "<esc-h>", "<cmd>winc h", mode = "t", desc = "Escape Terminal Left" },
+	{ "<leader>bt", "<cmd>terminal<cr>", desc = "Open Terminal Buffer" },
+	{ "<leader>tl", "<cmd>vertical botright terminal<cr>", desc = "New Left Terminal" },
+	{ "<leader>tb", "<cmd>botright terminal<cr>", desc = "New Bottom Terminal" },
 })
