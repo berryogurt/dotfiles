@@ -18,14 +18,5 @@ return {
 				spacing = 0, -- spacing between columns
 			},
 		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps",
-			},
-		},
 	},
 }
