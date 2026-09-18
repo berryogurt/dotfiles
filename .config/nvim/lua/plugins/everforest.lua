@@ -12,7 +12,6 @@ return {
 			vim.g.everforest_background = "hard"
 			vim.g.everforest_better_performance = false
 			vim.cmd.colorscheme("everforest")
-			vim.cmd("highlight Conceal ctermfg=109 guifg=#83c092 ctermbg=NONE ctermfg=NONE")
 			vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = "#414B50" })
 		end,
 	},

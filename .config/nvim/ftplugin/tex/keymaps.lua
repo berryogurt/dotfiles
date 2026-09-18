@@ -59,3 +59,50 @@ wk.add({
 	{ "ae", "<plug>(vimtex-ae)", desc = "outside environment" },
 	{ "ie", "<plug>(vimtex-ie)", desc = "inside environment" },
 })
+
+-- local function vimtex_status()
+-- 	if vim.bo.filetype ~= "tex" or not vim.b.vimtex then
+-- 		return ""
+-- 	end
+--
+-- 	-- Compiler status
+-- 	local compiler = vim.b.vimtex.compiler
+-- 	if not compiler or vim.tbl_isempty(compiler) then
+-- 		return ""
+-- 	end
+--
+-- 	if compiler.is_running() then
+-- 		return "󱐌 Compiling..."
+-- 	elseif compiler.status == 1 then
+-- 		return "✖ Compile Error"
+-- 	end
+-- 	return "✔ Compiled"
+-- end
+--
+-- local function texicon()
+-- 	return [[]]
+-- end
+--
+-- require("lualine").setup({
+-- 	options = {
+-- 		component_separators = { left = "", right = "" },
+-- 		section_separators = { left = "", right = "" },
+-- 		-- component_separators = { left = "", right = "" },
+-- 		-- section_separators = { left = "", right = "" },
+-- 	},
+-- 	sections = {
+-- 		lualine_a = {
+-- 			{ texicon, separator = { left = "", right = "" } },
+-- 			{ "mode", separator = { left = "", right = "" } },
+-- 		},
+-- 		-- lualine_c = {
+-- 		--   'filename',
+-- 		--   current_tex_section, -- From your section component
+-- 		-- },
+-- 		lualine_x = {
+-- 			-- tex_main_file,
+-- 			vimtex_status,
+-- 			-- tex_word_count,
+-- 		},
+-- 	},
+-- })

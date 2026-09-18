@@ -13,3 +13,5 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 # add minimize and maximize buttons
 gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close" || true
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true || true
+gsettings set org.gnome.desktop.interface toolbar-icons-size 'small'
+gsettings set org.gnome.desktop.interface show-battery-percentage true

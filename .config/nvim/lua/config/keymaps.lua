@@ -22,11 +22,11 @@ vim.keymap.set("i", "<C-CR>", "<esc>o")
 
 -- Disable binds NORMAL MODE
 wk.add({
-	{ "<del>", "<nop>" },
-	{ "q", "<nop>", silent = true },
-	{ "<c-z>", "<nop>", silent = true },
-	{ "<s-j>", "<nop>", silent = true },
-	{ "<s-k>", "<nop>", silent = true },
+	{ "<del>", "<nop>", silent = true, hidden = true },
+	{ "<c-z>", "<nop>", silent = true, hidden = true },
+	{ "q", "<nop>", silent = true, hidden = true },
+	{ "<s-j>", "<nop>", silent = true, hidden = true },
+	{ "<s-k>", "<nop>", silent = true, hidden = true },
 	{ -- bind q to close window only if it is not a normal buffer window
 		"q",
 		function()
@@ -41,42 +41,19 @@ wk.add({
 	},
 	{
 		mode = { "i", "s" },
-		{ "<tab>", "<nop>" },
+		{ "<tab>", "<nop>", hidden = true },
 		{ "<s-tab>", "<nop>" },
 	},
 })
 
--- UNDOTREE
-wk.add({
-	{ "<leader>u", "lua require('undotree').toggle()", desc = "Undotree", icon = { icon = "󰕌", color = "grey" } },
-})
-
--- Snacks Notification History
-
--- NAVIGATION
--- HJKL faster
-wk.add({
-	{ "<c-h>", "5h", desc = "Go 10 Left" },
-	{ "<c-l>", "5l", desc = "Go 10 Right" },
-	{ "<c-j>", "<c-d>", desc = "Page Down" },
-	{ "<c-k>", "<c-u>", desc = "Page Up" },
-})
-
 -- Window Navigation up down left right
-vim.keymap.set({ "i", "t", "n" }, "<a-j>", "<cmd>winc j<cr><esc>", { desc = "Navigate to window above" })
-vim.keymap.set({ "i", "t", "n" }, "<a-k>", "<cmd>winc k<cr><esc>", { desc = "Navigate to window below" })
-vim.keymap.set({ "i", "t", "n" }, "<a-l>", "<cmd>winc l<cr><esc>", { desc = "Navigate to left window" })
-vim.keymap.set({ "i", "t", "n" }, "<a-h>", "<cmd>winc h<cr><esc>", { desc = "Navigate to right window" })
-
--- Window resizing
-vim.keymap.set({ "n", "i" }, "<c-up>", "<cmd>res +1<cr>", { desc = "Window height +1" })
-vim.keymap.set({ "n", "i" }, "<c-down>", "<cmd>res -1<cr>", { desc = "Window height -1" })
-vim.keymap.set({ "n", "i" }, "<c-left>", "<cmd>vert res -1<cr>", { desc = "Window width -1" })
-vim.keymap.set({ "n", "i" }, "<c-right>", "<cmd>vert res +1<cr>", { desc = "Window width -1" })
-
--- Window action binds
-vim.keymap.set("n", "<leader>ws", "<cmd>split<cr><cmd>winc J<cr>", { desc = "Split Horizontally" })
-vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<cr><cmd>winc L<cr>", { desc = "Split Vertically" })
+wk.add({
+	mode = { "i", "t", "n" },
+	{ "<c-j>", "<cmd>winc j<cr><esc>" },
+	{ "<c-k>", "<cmd>winc k<cr><esc>" },
+	{ "<c-l>", "<cmd>winc l<cr><esc>" },
+	{ "<c-h>", "<cmd>winc h<cr><esc>" },
+})
 
 -- WHICHKEY COLORS: `azure`, `blue`, `cyan`, `green`, `grey`, `orange`, `purple`, `red`, `yellow`
 
@@ -108,6 +85,7 @@ wk.add({
 		desc = "Zen Mode",
 		icon = { icon = "󰚀 " },
 	},
+	{ "<leader>u", "lua require('undotree').toggle()", desc = "Undotree", icon = { icon = "󰕌", color = "grey" } },
 	--
 	--
 	--
@@ -220,13 +198,13 @@ wk.add({
 	--
 	-- Find
 	{
-		"<leader>f",
+		"<leader><leader>",
 		group = "find",
 		icon = { icon = "󱀲 ", color = "yellow" },
 	},
-	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File", icon = { icon = "󰻭 " } },
+	{ "<leader><leader>n", "<cmd>enew<cr>", desc = "New File", icon = { icon = "󰻭 " } },
 	{
-		"<leader>ff",
+		"<leader><leader>f",
 		function()
 			Snacks.picker.files()
 		end,
@@ -234,7 +212,7 @@ wk.add({
 		icon = { icon = "󰥩 " },
 	},
 	{
-		"<leader>fd",
+		"<leader><leader>d",
 		function()
 			Snacks.picker.files({ cwd = "~/dotfiles/", hidden = true })
 		end,
@@ -242,7 +220,7 @@ wk.add({
 		icon = { icon = "󱂀 " },
 	},
 	{
-		"<leader>fc",
+		"<leader><leader>c",
 		function()
 			Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 		end,
@@ -250,7 +228,7 @@ wk.add({
 		icon = { icon = "󱂀 " },
 	},
 	{
-		"<leader>fe",
+		"<leader><leader>e",
 		function()
 			Snacks.explorer()
 		end,
@@ -258,7 +236,7 @@ wk.add({
 		icon = { icon = "󰷏 " },
 	},
 	{
-		"<leader>fr",
+		"<leader><leader>r",
 		function()
 			Snacks.picker.recent()
 		end,
@@ -266,7 +244,7 @@ wk.add({
 		icon = { icon = "󰪻 " },
 	},
 	{
-		"<leader>fg",
+		"<leader><leader>g",
 		function()
 			Snacks.picker.grep()
 		end,
@@ -292,12 +270,13 @@ wk.add({
 	-- Buffer keymaps
 	{ "<leader>b", group = "buffer", icon = { icon = "󰓩 " } },
 	{ "<leader>bn", "<cmd>enew<cr>", desc = "New Buffer", icon = { icon = "󰝜 " } },
-	{ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete Buffer", icon = { icon = "󰭌 " } },
-	{ "<leader>bD", "<cmd>bdelete!<cr>", desc = "Delete Buffer Override", icon = { icon = "󰭌 " } },
-	{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Navigate to left buffer", icon = { icon = "󰌥 " } },
-	{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Navigate to right buffer", icon = { icon = "󰌒 " } },
-	{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Navigate to right buffer", icon = { icon = "󰌒 " } },
-	{ "<S-H>", "<cmd>BufferLineCyclePrev<cr>", desc = "Navigate to left buffer", icon = { icon = "󰌥 " } },
+	{ "<leader>bd", "<cmd>bdelete<cr>", desc = "Buffer Delete", icon = { icon = "󰭌 " } },
+	{ "<leader>bD", "<cmd>bdelete!<cr>", desc = "Buffer Delete Override", icon = { icon = "󰭌 " } },
+	{ "<leader>br", "<cmd>edit!<cr>", desc = "Buffer Reload", icon = { icon = "󰓩 " } },
+	{ "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Left Buffer", icon = { icon = "󰌥 " } },
+	{ "<s-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Left Buffer", icon = { icon = "󰌥 " } },
+	{ "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Right Buffer", icon = { icon = "󰌒 " } },
+	{ "<s-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Right Buffer", icon = { icon = "󰌒 " } },
 	{
 		"<leader>bb",
 		function()
@@ -307,6 +286,12 @@ wk.add({
 		icon = { icon = "󰓩 " },
 	},
 	{ "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Other Buffers", icon = { icon = "󰭌 " } },
+	{
+		"<leader>bt",
+		"<cmd>terminal<cr>",
+		desc = "Open Terminal Buffer",
+		icon = { icon = "", color = "red" },
+	},
 	--
 	--
 	--
@@ -326,10 +311,9 @@ wk.add({
 	{ "<esc>", "<c-\\><c-n>", mode = "t", desc = "Escape Terminal", icon = { icon = "", color = "red" } },
 	{ "<esc-h>", "<cmd>winc h", mode = "t", desc = "Escape Terminal Left", icon = { icon = "", color = "red" } },
 	{
-		"<leader>bt",
-		"<cmd>terminal<cr>",
-		desc = "Open Terminal Buffer",
-		group = "terminal",
+		"<leader>tt",
+		"<cmd>vert terminal<cr>",
+		desc = "New Terminal",
 		icon = { icon = "", color = "red" },
 	},
 	{
@@ -345,3 +329,7 @@ wk.add({
 		icon = { icon = "", color = "red" },
 	},
 })
+
+-- local function handle_url(link)
+--
+-- end
