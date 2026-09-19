@@ -1,0 +1,31 @@
+-- return {
+-- 	{
+-- 		"nvim-lualine/lualine.nvim",
+-- 		dependencies = { "nvim-tree/nvim-web-devicons" },
+-- 		config = function()
+-- 			local function vimicon()
+-- 				return [[Tex]]
+-- 			end
+-- 			local function words()
+-- 				return vim.cmd("VimtexCountWords")
+-- 			end
+--
+-- 			require("lualine").setup({
+-- 				options = {
+-- 					component_separators = { left = "", right = "" },
+-- 					section_separators = { left = "", right = "" },
+-- 					-- component_separators = { left = "", right = "" },
+-- 					-- section_separators = { left = "", right = "" },
+-- 				},
+-- 				sections = {
+-- 					lualine_a = {
+-- 						{ vimicon, separator = { left = "", right = "" } },
+-- 						{ "mode", separator = { left = "", right = "" } },
+-- 					},
+-- 					lualine_b = { "branch", "diff", "diagnostics" },
+-- 					lualine_x = { "encoding", words, "filetype" },
+-- 				},
+-- 			})
+-- 		end,
+-- 	},
+-- }

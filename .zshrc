@@ -69,6 +69,8 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-interactive-cd)
+plugins+=(zsh-vi-mode)
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true # copy to system keyboard with yy (line) and yw(word)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,5 +105,3 @@ alias e="exit"
 alias q="exit"
 alias vi="nvim"
 alias vim="nvim"
-
-set -o vi
