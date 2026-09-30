@@ -186,6 +186,12 @@ wk.add({
 	-- Search
 	{ "<leader>s", desc = "search", group = "search", icon = { icon = " " } },
 	{
+		"<leader>sn",
+		"<cmd>LuaSnipLoad<cr>",
+		desc = "Load Snippets",
+		icon = { icon = "󰢱 " },
+	},
+	{
 		"<leader>sm",
 		function()
 			Snacks.picker.marks()

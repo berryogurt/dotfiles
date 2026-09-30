@@ -34,7 +34,7 @@ return {
 	),
 	s(
 		{
-			trig = ";0",
+			trig = "0/",
 			name = "Empty Set",
 			wordTrig = true,
 			regTrig = false,
@@ -781,14 +781,35 @@ return {
 		{ condition = in_mathzone }
 	),
 	s(
-		{ trig = "overline", name = "Overline", snippetType = "autosnippet" },
+		{
+			trig = "ol(.)",
+			name = "Overline",
+			wordTrig = false,
+			regTrig = true,
+			condition = function()
+				local current = vim.fn["vimtex#cmd#get_current"]()
+				return (in_mathzone() and current.name ~= "\\overline")
+			end,
+			--    function()
+			-- 	local current = vim.fn["vimtex#cmd#get_current"]()
+			-- 	if current.name == "\\overline" or not_in_mathzone() then
+			-- 		return false
+			-- 	end
+			-- 	return true
+			-- end,
+			snippetType = "autosnippet",
+		},
 		fmta(
 			[[
-    \overline{<>} 
+\overline{<><>} 
     ]],
-			{ i(1) }
-		),
-		{ condition = in_mathzone }
+			{
+				f(function(_, snip)
+					return snip.captures[1]
+				end),
+				i(1),
+			}
+		)
 	),
 	s(
 		{
@@ -807,11 +828,14 @@ return {
 		},
 		fmta(
 			[[
-    \mathrm{<><>} <>
+    \mathrm{<><>} 
     ]],
-			{ f(function(_, snip)
-				return snip.captures[1]
-			end), i(1), i(0) }
+			{
+				f(function(_, snip)
+					return snip.captures[1]
+				end),
+				i(1),
+			}
 		)
 	),
 
