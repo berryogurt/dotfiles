@@ -110,3 +110,4 @@ alias uninstall="sudo dnf remove"
 alias update="sudo dnf upgrade"
 alias c="clear"
 alias commit="git add . && git status && git commit -m 'express commit, small changes'"
+source $ZSH/aliases.zsh

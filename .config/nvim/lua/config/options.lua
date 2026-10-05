@@ -72,3 +72,11 @@ vim.cmd([[
         \ ? 'Help'
         \ : 'help'
 ]])
+
+vim.filetype.add({
+	extension = {
+		mod = "ampl",
+		dat = "ampl",
+		run = "ampl",
+	},
+})
