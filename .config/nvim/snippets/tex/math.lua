@@ -3,9 +3,6 @@
 -- Math zone context
 -- taken from https://ejmastnak.com/
 
-local not_in_mathzone = function()
-	return vim.fn["vimtex#syntax#in_mathzone"]() == 0
-end
 local in_mathzone = function()
 	return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
@@ -13,7 +10,7 @@ end
 return {
 	-- Math symbols
 	s(
-		{ trig = ";o", name = "Circ", wordTrig = false, snippetType = "autosnippet" },
+		{ trig = "`o", name = "Circ", wordTrig = false, snippetType = "autosnippet" },
 		fmta(
 			[[
     \circ 
@@ -23,7 +20,7 @@ return {
 		{ condition = in_mathzone }
 	),
 	s(
-		{ trig = ";p", name = "Partial", wordTrig = false, snippetType = "autosnippet" },
+		{ trig = "`p", name = "Partial", wordTrig = false, snippetType = "autosnippet" },
 		fmta(
 			[[
     \partial 
@@ -34,7 +31,7 @@ return {
 	),
 	s(
 		{
-			trig = "0/",
+			trig = "`0",
 			name = "Empty Set",
 			wordTrig = true,
 			regTrig = false,
@@ -417,22 +414,27 @@ return {
 		},
 		fmta(
 			[[
-          \substack{<>} 
+          \substack{<> // <>} 
         ]],
 			{
-				i(1),
+				i(1, "top"),
+				i(2, "bottom"),
 			}
 		)
 	),
 	s(
-		{ trig = "supp", name = "Support", snippetType = "autosnippet" },
+		{
+			trig = "supp",
+			name = "Support",
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
 		fmta(
 			[[
   \mathrm{supp} ( <> ) 
   ]],
 			{ i(1) }
-		),
-		{ condition = in_mathzone }
+		)
 	),
 	s(
 		{ trig = "divg", name = "Divergence", snippetType = "autosnippet" },
@@ -456,9 +458,9 @@ return {
 	),
 	s(
 		{
-			trig = "overset",
+			trig = ";os",
 			name = "Overset",
-			snippetType = "snippet",
+			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
 		fmta(
@@ -470,9 +472,9 @@ return {
 	),
 	s(
 		{
-			trig = "underset",
+			trig = ";us",
 			name = "Underset",
-			snippetType = "snippet",
+			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
 		fmta(
@@ -620,28 +622,35 @@ return {
 		},
 		fmta(
 			[[
-        ^<> 
+        ^<>
       ]],
 			{
 				f(function(_, snip)
 					if snip.captures[1] == "#" then
 						return "\\#"
+					elseif snip.captures[1] == "o" then
+						return "o"
 					else
-						return snip.captures[1]
+						return snip.captures[1] .. " "
 					end
 				end),
 			}
 		)
 	),
 	s(
-		{ trig = "ee", name = "Superscript without braces", wordTrig = false, snippetType = "autosnippet" },
-		{ t("^") },
-		{ condition = in_mathzone }
-	),
-	s(
-		{ trig = "ss", name = "Subscript", wordTrig = false, snippetType = "autosnippet" },
-		{ t("_{"), i(1), t("} ", i(0)) },
-		{ condition = in_mathzone }
+		{
+			trig = "ss",
+			name = "Subscript",
+			wordTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+    _{<>} 
+    ]],
+			{ i(1) }
+		)
 	),
 	s(
 		{ trig = ";d(%a)", name = "Integral dx", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
@@ -654,6 +663,35 @@ return {
 			end) }
 		),
 		{ condition = in_mathzone }
+	),
+	s(
+		{
+			trig = ";sq",
+			name = "Square Root",
+			wordTrig = false,
+			regTrig = true,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+          \sqrt{<>} 
+        ]],
+			{
+				d(1, function(_, snip)
+					local input = snip.captures[1]
+					if input == "(" then
+						return sn(nil, { t("("), i(1), t(")") })
+					elseif input == "{" then
+						return sn(nil, { t("\\{"), i(1), t("\\}") })
+					elseif input == "[" then
+						return sn(nil, { t("["), i(1), t("]") })
+					else
+						return sn(nil, t(input))
+					end
+				end),
+			}
+		)
 	),
 	s(
 		{
@@ -790,13 +828,6 @@ return {
 				local current = vim.fn["vimtex#cmd#get_current"]()
 				return (in_mathzone() and current.name ~= "\\overline")
 			end,
-			--    function()
-			-- 	local current = vim.fn["vimtex#cmd#get_current"]()
-			-- 	if current.name == "\\overline" or not_in_mathzone() then
-			-- 		return false
-			-- 	end
-			-- 	return true
-			-- end,
 			snippetType = "autosnippet",
 		},
 		fmta(
@@ -820,7 +851,7 @@ return {
 			snippetType = "autosnippet",
 			condition = function()
 				local current = vim.fn["vimtex#cmd#get_current"]()
-				if current.name == "\\mathrm" or not_in_mathzone() then
+				if current.name == "\\mathrm" or not in_mathzone() then
 					return false
 				end
 				return true
@@ -841,7 +872,7 @@ return {
 
 	s(
 		{
-			trig = "underbrace",
+			trig = ";ub",
 			name = "Underbrace",
 			snippetType = "snippet",
 			condition = in_mathzone,
@@ -855,7 +886,7 @@ return {
 	),
 	s(
 		{
-			trig = "overbrace",
+			trig = ";ob",
 			name = "Overbrace",
 			snippetType = "snippet",
 			condition = in_mathzone,

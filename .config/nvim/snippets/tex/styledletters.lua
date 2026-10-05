@@ -99,6 +99,22 @@ return {
 	),
 	s(
 		{
+			trig = "EE",
+			name = "Expected Value",
+			regTrig = true,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+			priority = 9999,
+		},
+		fmta(
+			[[
+    \mathbb E 
+    ]],
+			{}
+		)
+	),
+	s(
+		{
 			trig = "NN",
 			name = "Natural Numbers",
 			regTrig = true,
@@ -109,6 +125,22 @@ return {
 		fmta(
 			[[
     \mathbb N
+    ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "ZZ",
+			name = "Integers",
+			regTrig = true,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+			priority = 9999,
+		},
+		fmta(
+			[[
+    \mathbb Z
     ]],
 			{}
 		)
@@ -160,7 +192,7 @@ return {
 		},
 		fmta(
 			[[
-    \mathcal{C}<>
+    \mathcal C<>
     ]],
 			{
 				d(1, function(_, snip)
@@ -188,9 +220,9 @@ return {
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
-		fmta(
+		fmta( -- Keep this without braces and trailing space for subscript
 			[[
-          \mathbf{<>} 
+          \mathbf <>
         ]],
 			{
 				f(function(_, snip)
@@ -306,13 +338,13 @@ return {
 			trig = "(%a)bar",
 			name = "Bar",
 			regTrig = true,
-			wordTrig = false,
+			wordTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
-		fmta(
+		fmta( -- Keep this without braces and trailing space for subscript
 			[[
-  \bar{<>} 
+  \bar <> 
   ]],
 			{
 				f(function(_, snip)
@@ -326,7 +358,7 @@ return {
 			trig = "til(%a)",
 			name = "Tilde",
 			regTrig = true,
-			wordTrig = false,
+			wordTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
@@ -347,13 +379,13 @@ return {
 			trig = "(%a)til",
 			name = "Tilde",
 			regTrig = true,
-			wordTrig = false,
+			wordTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
-		fmta(
+		fmta( -- Keep this without braces and trailing space for subscript
 			[[
-  \til{<>} 
+  \tilde <> 
   ]],
 			{
 				f(function(_, snip)
@@ -367,13 +399,13 @@ return {
 			trig = "(%a)hat",
 			name = "(trig)Hat",
 			regTrig = true,
-			wordTrig = false,
+			wordTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
-		fmta(
+		fmta( -- Keep this without braces and trailing space for subscript
 			[[
-  \hat{<>} 
+  \hat <>  
   ]],
 			{
 				f(function(_, snip)
@@ -433,9 +465,9 @@ return {
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
-		fmta(
+		fmta( -- Keep this without braces and trailing space for subscript
 			[[
-        \dot{<>} 
+        \dot <> 
       ]],
 			{
 				f(function(_, snip)
@@ -456,7 +488,7 @@ return {
 		},
 		fmta(
 			[[
-        \ddot{<>}
+        \ddot{<>} 
       ]],
 			{
 				f(function(_, snip)

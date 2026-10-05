@@ -1,3 +1,4 @@
+---@diagnostic disable global: vim
 -- LSP Formatting on save
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
@@ -15,4 +16,10 @@ end, {})
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*/snippets/**.lua",
 	command = "LuaSnipLoad",
+})
+
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+	desc = "return cursor to where it was last time closing the file",
+	pattern = "*",
+	command = [[silent! normal! g`"zv]],
 })

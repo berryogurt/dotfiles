@@ -21,7 +21,7 @@ return {
 				-- "shfmt", -- fmt: zsh bash
 				"jedi_language_server", -- lsp: python
 				"yamlls", -- lsp: YAML
-				"texlab", -- lsp: latex
+				-- "texlab", -- lsp: latex
 				"marksman", -- lsp: markdown
 				"matlab_ls", -- lsp: matlab
 			},
