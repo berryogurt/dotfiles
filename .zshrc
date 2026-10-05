@@ -97,7 +97,8 @@ export ARCHFLAGS="-arch $(uname -m)"
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+#
+# ALIASES
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias push="git push"
@@ -108,4 +109,4 @@ alias install="sudo dnf install"
 alias uninstall="sudo dnf remove"
 alias update="sudo dnf upgrade"
 alias c="clear"
-alias expresscommit="git add . && git status && git commit -m 'express commit, small changes'"
+alias commit="git add . && git status && git commit -m 'express commit, small changes'"
