@@ -441,7 +441,7 @@ return {
 		},
 		fmta(
 			[[
-\begin{figure}[<>]
+\begin{figure}[<>] % htbp
   \centering
   \includegraphics[width=<>\textwidth]{images/<>}
   \caption{<>}

@@ -46,7 +46,7 @@ wk.add({
 	{ "tsm", "<plug>(vimtex-env-toggle-math)", desc = "Toggle Math Environment" },
 	{ "csm", "<plug>(vimtex-env-change-math)", desc = "Change Math Environment" },
 	{ "dsm", "<plug>(vimtex-env-delete-math)", desc = "Delete Math Environment" },
-	{ "tss", "<plug>(vimtex-env-change-math)", desc = "Toggle Star Environment" },
+	{ "tss", "<plug>(vimtex-env-toggle-star)", desc = "Toggle Star Environment" },
 })
 
 -- Visual and Operator Pending Mode

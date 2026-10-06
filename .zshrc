@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export AMPL_LICFILE=$HOME/.local/ampl.linux-intel64/ampl.lic
+export AMPLKEY_RUNTIME_DIR=$HOME/.local/ampl.linux-intel64
+export PATH=$HOME/.local/ampl.linux-intel64/:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

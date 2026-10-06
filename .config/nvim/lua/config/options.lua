@@ -27,7 +27,7 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.list = true
 -- Define the characters
 vim.opt.listchars = {
-	tab = "▎ ",
+	tab = "  ",
 	trail = "·",
 	nbsp = "␣",
 	extends = "❯",
