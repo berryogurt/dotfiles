@@ -38,18 +38,31 @@ return {
 				max_height = 5,
 				scrollbar = false,
 				draw = {
+					snippet_indicator = "",
 					columns = { -- this part defines what is in the menu
 						{ "kind_icon", gap = 1 },
 						{ "label" },
 					},
-					-- components = { -- menu options
-					-- 	label = {
-					-- 		width = { max = 15 },
-					-- 	},
-					-- label_description = { (UNNECESSARY FOR NOW)
-					-- 	width = { max = 15 },
-					-- },
-					-- },
+					components = { -- menu options
+						label = { -- Define Maximum width and set custom display setting for lsp entries
+							width = { max = 20 },
+							ellipsis = false,
+							text = function(ctx)
+								local desc = ctx.label
+								if ctx.source_id == "lsp" and string.len(desc) > 20 then
+									local len = string.len(desc)
+									local ret = (
+										string.sub(desc, 1, 3)
+										.. "󰇘"
+										.. string.sub(desc, math.max(len - 16, 0), len)
+									)
+									return ret
+								else
+									return desc
+								end
+							end,
+						},
+					},
 				},
 			},
 			ghost_text = { enabled = false },

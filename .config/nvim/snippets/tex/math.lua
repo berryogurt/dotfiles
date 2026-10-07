@@ -115,7 +115,7 @@ return {
 		{
 			trig = "b|",
 			name = "Big vertical bar",
-			wordTrig = true,
+			wordTrig = false,
 			regTrig = false,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
@@ -174,14 +174,18 @@ return {
 		{ condition = in_mathzone }
 	),
 	s(
-		{ trig = "inn", name = "In Set", snippetType = "autosnippet" },
+		{
+			trig = "in",
+			name = "In Set",
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
 		fmta(
 			[[
     \in 
     ]],
 			{}
-		),
-		{ condition = in_mathzone }
+		)
 	),
 	s(
 		{
@@ -414,7 +418,7 @@ return {
 		},
 		fmta(
 			[[
-          \substack{<> // <>} 
+          \substack{<> \\ <>} 
         ]],
 			{
 				i(1, "top"),
@@ -581,6 +585,38 @@ return {
 	s(
 		{ trig = "cases", name = "Math Cases", snippetType = "autosnippet", condition = in_mathzone },
 		{ t({ "\\begin{cases}", "  " }), i(0), t({ "", "\\end{cases}" }) }
+	),
+	s(
+		{
+			trig = "%-%-",
+			name = "Inverse Superscript",
+			wordTrig = false,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+^{-1} 
+        ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "%*%*",
+			name = "^ Asterisk",
+			wordTrig = false,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  ^* 
+              ]],
+			{}
+		)
 	),
 	s(
 		{ trig = "ww", name = "Superscript", wordTrig = false, snippetType = "autosnippet" },
@@ -869,7 +905,32 @@ return {
 			}
 		)
 	),
-
+	s(
+		{
+			trig = "(%a)rm",
+			name = "Math Remove (1)",
+			regTrig = true,
+			wordTrig = false,
+			snippetType = "autosnippet",
+			condition = function()
+				local current = vim.fn["vimtex#cmd#get_current"]()
+				if current.name == "\\mathrm" or not in_mathzone() then
+					return false
+				end
+				return true
+			end,
+		},
+		fmta(
+			[[
+    \mathrm{<>} 
+    ]],
+			{
+				f(function(_, snip)
+					return snip.captures[1]
+				end),
+			}
+		)
+	),
 	s(
 		{
 			trig = ";ub",

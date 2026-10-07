@@ -24,8 +24,8 @@ return {
 			vim.cmd([[
 	     let g:vimtex_env_toggle_math_map = {
 	         \ '$': '\[',
-	         \ '\[': 'align',
-	         \ 'align' : 'equation',
+	         \ '\[': 'align*',
+	         \ 'align*' : 'equation',
 	         \ 'equation': '$',
 	         \}]])
 			vim.cmd("let g:vimtex_quickfix_ignore_filters = ['Label(s) may have changed']")
