@@ -251,22 +251,34 @@ return {
 	),
 	s(
 		{
-			trig = "([^\\])sig",
-			name = "Sigma",
-			wordTrig = false,
+			trig = "\\sig",
+			name = "\\sig",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \sig
+  ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "sig", --"([^%\\])sig",
+			name = "sigma",
+			wordTrig = true,
 			regTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
 		fmta(
 			[[
-    <>\sigma 
+    \sigma 
     ]],
-			{
-				f(function(_, snip)
-					return snip.captures[1]
-				end),
-			}
+			{}
 		)
 	),
 	s(

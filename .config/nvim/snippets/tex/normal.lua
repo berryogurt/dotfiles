@@ -474,97 +474,30 @@ return {
     \begin{subfigure}{<>\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/<>}
-        %<>
         <>
-        %<>
         <>
     \end{subfigure}
-    %<>
     <>
     \begin{subfigure}{<>\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/<>}
-        %<>
         <>
-        %<>
         <>
     \end{subfigure}
-    %<>
-    <>
-    %<>
-    <>
   \end{figure}
     <>
     ]],
 			{
-				i(1, "t"),
+				i(1, "htbp"),
 				i(2, "0.45"),
 				i(3, "image.png"),
-				i(4, "no caption"),
-				f(function(args)
-					local caption = args[1][1]
-					if caption == "no caption" then
-						return "%"
-					else
-						return "\\caption{" .. caption .. "}"
-					end
-				end, { 4 }),
-				i(5, "no label"),
-				f(function(args)
-					local label = args[1][1]
-					if label == "no label" then
-						return "%"
-					else
-						return "\\label{fig:" .. label .. "}"
-					end
-				end, { 5 }),
-				i(6, "\\hfill"),
-				f(function(args)
-					local arg = args[1][1]
-					if arg == "\\hfill" then
-						return "\\hfill"
-					else
-						return "%"
-					end
-				end, { 6 }),
+				c(4, { t(""), sn(nil, { t("\\caption{"), i(1), t("}") }) }),
+				c(5, { t(""), sn(nil, { t("\\label{fig:"), i(1), t("}") }) }),
+				c(6, { t("\\hfill"), t("") }),
 				i(7, "0.45"),
 				i(8, "image.png"),
-				i(9, "no caption"),
-				f(function(args)
-					local caption = args[1][1]
-					if caption == "no caption" then
-						return "%"
-					else
-						return "\\caption{" .. caption .. "}"
-					end
-				end, { 9 }),
-				i(10, "no label"),
-				f(function(args)
-					local label = args[1][1]
-					if label == "no label" then
-						return "%"
-					else
-						return "\\label{fig:" .. label .. "}"
-					end
-				end, { 10 }),
-				i(11, "no caption"),
-				f(function(args)
-					local caption = args[1][1]
-					if caption == "no caption" then
-						return "%"
-					else
-						return "\\caption{" .. caption .. "}"
-					end
-				end, { 11 }),
-				i(12, "no label"),
-				f(function(args)
-					local label = args[1][1]
-					if label == "no label" then
-						return "%"
-					else
-						return "\\label{fig:" .. label .. "}"
-					end
-				end, { 12 }),
+				c(9, { t(""), sn(nil, { t("\\caption{"), i(1), t("}") }) }),
+				c(10, { t(""), sn(nil, { t("\\label{fig:"), i(1), t("}") }) }),
 				i(0),
 			}
 		)

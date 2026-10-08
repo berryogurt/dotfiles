@@ -10,7 +10,7 @@ return {
 				enable = true, -- Use TreeSitter for highlighting
 				-- This is the "magic" line: disable standard Vim syntax
 				-- to let TreeSitter take full control.
-				disable = { "latex" },
+				disable = { "latex", "tex", "plaintex" },
 				additional_vim_regex_highlighting = false,
 			},
 		},

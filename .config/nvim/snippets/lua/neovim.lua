@@ -5,34 +5,34 @@ return {
 		{ trig = "snippet", name = "Snippet", snippetType = "snippet" },
 		fmta(
 			[=[
-      s(
-        {
-          trig = "<>",
-          name = "<>",
-          wordTrig = <>,
-          regTrig = <>,
-          snippetType = "<>snippet",
-          condition = <>in_mathzone
-        },
-        fmta(
-          [[
+s(
+{
+trig = "<>",
+name = "<>",
+wordTrig = <>,
+regTrig = <>,
+snippetType = "<>snippet",
+condition = <>in_mathzone
+},
+fmta(
+[[
 <>
-            ]],
-          {
-            <>
-          }
-        )
-      ),
-          ]=],
+]],
+{
+<>
+}
+)
+),
+]=],
 			{
 				i(1, "trigger"),
 				i(2, "name"),
 				c(3, { t("true"), t("false") }),
-				i(4, "false"),
-				i(5),
-				i(6),
-				i(7),
-				i(0, "i(0)"),
+				c(4, { t("false"), t("true") }),
+				c(5, { t("auto"), t("") }),
+				c(6, { t(""), t("not_") }),
+				i(7, "snippet"),
+				c(8, { t(""), t("i(0)") }),
 			},
 			{ delimiters = "<>" }
 		)

@@ -7,6 +7,12 @@ wk.add({
 	},
 })
 
+wk.add({ {
+	mode = { "i", "s" },
+	{ "<tab>", "<nop>", hidden = true },
+	{ "<s-tab>", "<nop>" },
+} })
+
 vim.opt.timeoutlen = 3000
 -- vim.keymap.set("i", "<S-BS>", "<esc>I")
 -- vim.keymap.set("i", "<S-CR>", "<esc>A")

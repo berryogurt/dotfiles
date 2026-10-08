@@ -81,11 +81,12 @@ return {
 	--   end), t(" ") },
 	--   { condition = in_mathzone }
 	-- ),
+
+	-- Common Styled Letters, Rational, Real, Probability, Borel Set, Filter
 	s(
 		{
 			trig = "QQ",
 			name = "Rational Numbers",
-			regTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 			priority = 9999,
@@ -99,9 +100,38 @@ return {
 	),
 	s(
 		{
+			trig = "GG",
+			name = "Calligraphy G",
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+			priority = 9999,
+		},
+		fmta(
+			[[
+    \mathcal G 
+    ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "FF",
+			name = "Calligraphy F",
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+			priority = 9999,
+		},
+		fmta(
+			[[
+    \mathcal F 
+    ]],
+			{}
+		)
+	),
+	s(
+		{
 			trig = "EE",
 			name = "Expected Value",
-			regTrig = true,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 			priority = 9999,
@@ -124,8 +154,24 @@ return {
 		},
 		fmta(
 			[[
-    \mathbb N
+    \mathbb N 
     ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "N 0",
+			name = "N sub 0",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  N_0 
+ ]],
 			{}
 		)
 	),
@@ -140,7 +186,7 @@ return {
 		},
 		fmta(
 			[[
-    \mathbb Z
+    \mathbb Z 
     ]],
 			{}
 		)
@@ -156,7 +202,7 @@ return {
 		},
 		fmta(
 			[[
-    \mathbb P
+    \mathbb P 
     ]],
 			{}
 		)
@@ -165,14 +211,14 @@ return {
 		{
 			trig = "(%a)cal",
 			name = "Calligraphy Math",
+			wordTrig = true,
 			regTrig = true,
-			wordTrig = false,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
 		fmta(
 			[[
-  \mathcal{<>} 
+  \mathcal <> 
   ]],
 			{
 				f(function(_, snip)
@@ -183,7 +229,7 @@ return {
 	),
 	s(
 		{
-			trig = "CC(.)",
+			trig = "CC",
 			name = "Mathcal C",
 			regTrig = true,
 			snippetType = "autosnippet",
@@ -192,23 +238,39 @@ return {
 		},
 		fmta(
 			[[
-    \mathcal C<>
+    \mathcal C 
     ]],
 			{
-				d(1, function(_, snip)
-					local input = snip.captures[1]
-					if input == "(" then
-						return sn(nil, { t("("), i(1), t(") ") })
-					elseif input == "o" then
-						return sn(nil, t("^" .. input))
-					elseif string.find("1234567890mnk", input) then
-						--if type(tonumber(input)) == "number" then
-						return sn(nil, t("^" .. input .. " "))
-					else
-						return sn(nil, t(input))
-					end
-				end),
+				-- d(1, function(_, snip)
+				-- 	local input = snip.captures[1]
+				-- 	if input == "(" then
+				-- 		return sn(nil, { t("("), i(1), t(") ") })
+				-- 	elseif input == "o" then
+				-- 		return sn(nil, t("^" .. input))
+				-- 	elseif string.find("1234567890mnk", input) then
+				-- 		--if type(tonumber(input)) == "number" then
+				-- 		return sn(nil, t("^" .. input .. " "))
+				-- 	else
+				-- 		return sn(nil, t(input))
+				-- 	end
+				-- end),
 			}
+		)
+	),
+	s(
+		{
+			trig = "C oo",
+			name = "C infinity",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  C^\infty 
+ ]],
+			{}
 		)
 	),
 	s(

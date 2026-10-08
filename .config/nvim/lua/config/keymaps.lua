@@ -39,12 +39,13 @@ wk.add({
 		end,
 		desc = "Close Special Window",
 	},
-	{
-		mode = { "i", "s" },
-		{ "<tab>", "<nop>", hidden = true },
-		{ "<s-tab>", "<nop>" },
-	},
 })
+
+-- LUASNIP CHOICE NODE
+vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
+vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
 
 -- Window Navigation up down left right
 wk.add({
@@ -77,15 +78,7 @@ wk.add({
 		desc = "Notification History",
 		icon = { icon = "󰍪 " },
 	},
-	{
-		"<leader>z",
-		function()
-			Snacks.zen()
-		end,
-		desc = "Zen Mode",
-		icon = { icon = "󰚀 " },
-	},
-	{ "<leader>u", "lua require('undotree').toggle()", desc = "Undotree", icon = { icon = "󰕌", color = "grey" } },
+	{ "<leader>z", "lua require('undotree').toggle()", desc = "Undotree", icon = { icon = "󰕌", color = "grey" } },
 	--
 	--
 	--
@@ -212,9 +205,17 @@ wk.add({
 	{
 		"<leader>ff",
 		function()
-			Snacks.picker.files()
+			Snacks.picker.files({ cwd = vim.loop.cwd(), hidden = true })
 		end,
-		desc = "Find Files",
+		desc = "Find Files (cwd)",
+		icon = { icon = "󰥩 " },
+	},
+	{
+		"<leader>fh",
+		function()
+			Snacks.picker.files({ cwd = "~/", hidden = true })
+		end,
+		desc = "Find Files (home)",
 		icon = { icon = "󰥩 " },
 	},
 	{
