@@ -111,6 +111,6 @@ alias uninstall="sudo dnf remove"
 alias update="sudo dnf upgrade"
 alias c="clear"
 alias add="git add . && git status"
-alias com="git commit -m 'express commit"
+alias com="git commit -m 'express commit'"
 alias push="git push"
 source $ZSH/aliases.zsh
