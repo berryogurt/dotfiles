@@ -204,13 +204,13 @@ wk.add({
 	--
 	-- Find
 	{
-		"<leader><leader>",
+		"<leader>f",
 		group = "find",
 		icon = { icon = "󱀲 ", color = "yellow" },
 	},
-	{ "<leader><leader>n", "<cmd>enew<cr>", desc = "New File", icon = { icon = "󰻭 " } },
+	{ "<leader>fn", "<cmd>enew<cr>", desc = "New File", icon = { icon = "󰻭 " } },
 	{
-		"<leader><leader>f",
+		"<leader>ff",
 		function()
 			Snacks.picker.files()
 		end,
@@ -218,7 +218,7 @@ wk.add({
 		icon = { icon = "󰥩 " },
 	},
 	{
-		"<leader><leader>d",
+		"<leader>fd",
 		function()
 			Snacks.picker.files({ cwd = "~/dotfiles/", hidden = true })
 		end,
@@ -226,7 +226,7 @@ wk.add({
 		icon = { icon = "󱂀 " },
 	},
 	{
-		"<leader><leader>c",
+		"<leader>fc",
 		function()
 			Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 		end,
@@ -234,7 +234,7 @@ wk.add({
 		icon = { icon = "󱂀 " },
 	},
 	{
-		"<leader><leader>e",
+		"<leader>fe",
 		function()
 			Snacks.explorer()
 		end,
@@ -242,7 +242,7 @@ wk.add({
 		icon = { icon = "󰷏 " },
 	},
 	{
-		"<leader><leader>r",
+		"<leader>fr",
 		function()
 			Snacks.picker.recent()
 		end,
@@ -250,7 +250,7 @@ wk.add({
 		icon = { icon = "󰪻 " },
 	},
 	{
-		"<leader><leader>g",
+		"<leader>fg",
 		function()
 			Snacks.picker.grep()
 		end,
