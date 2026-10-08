@@ -52,8 +52,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# much,# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -104,7 +103,6 @@ export ARCHFLAGS="-arch $(uname -m)"
 # ALIASES
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias push="git push"
 alias e="exit"
 alias q="exit"
 alias ssh="kitten +kitty ssh"
@@ -112,5 +110,7 @@ alias install="sudo dnf install"
 alias uninstall="sudo dnf remove"
 alias update="sudo dnf upgrade"
 alias c="clear"
-alias commit="git add . && git status && git commit -m 'express commit, small changes'"
+alias add="git add . && git status"
+alias com="git commit -m 'express commit"
+alias push="git push"
 source $ZSH/aliases.zsh
