@@ -172,7 +172,7 @@ return {
       \item <>
     \end{enumerate}
     ]],
-			{ i(1, "."), i(0) }
+			{ i(1, ")"), i(0) }
 		)
 	),
 	s(
@@ -627,6 +627,24 @@ return {
 		)
 	),
 	s(
+		{
+			trig = "footnote",
+			name = "Footnote",
+			wordTrig = false,
+			regTrig = true,
+			snippetType = "autosnippet",
+			condition = not_in_mathzone,
+		},
+		fmta(
+			[[
+  \footnote{<>} 
+  ]],
+			{
+				i(1),
+			}
+		)
+	),
+	s(
 		{ trig = "underline", name = "Underline", snippetType = "snippet" },
 		fmta(
 			[[
@@ -791,26 +809,26 @@ return {
 			}
 		)
 	),
-	s(
-		{
-			trig = "lecture",
-			name = "Lecture Mark",
-			wordTrig = true,
-			regTrig = false,
-			snippetType = "snippet",
-			condition = not_in_mathzone,
-		},
-		fmta(
-			[[
-      \begin{center}
-      \rule[3pt]{3cm}{0.5px} \quad  Lecture <> \quad \rule[3pt]{3cm}{0.5pt}
-      \end{center}
-        ]],
-			{
-				i(1),
-			}
-		)
-	),
+	-- s(
+	-- 	{
+	-- 		trig = "lecture",
+	-- 		name = "Lecture Mark",
+	-- 		wordTrig = true,
+	-- 		regTrig = false,
+	-- 		snippetType = "snippet",
+	-- 		condition = not_in_mathzone,
+	-- 	},
+	-- 	fmta(
+	-- 		[[
+	--      \begin{center}
+	--      \rule[3pt]{3cm}{0.5px} \quad  Lecture <> \quad \rule[3pt]{3cm}{0.5pt}
+	--      \end{center}
+	--        ]],
+	-- 		{
+	-- 			i(1),
+	-- 		}
+	-- 	)
+	-- ),
 	s(
 		{
 			trig = "lectureheader",
@@ -822,7 +840,7 @@ return {
 		},
 		fmta(
 			[[
-          \fancyhead[C]{\rule[3pt]{3cm}{0.5px} \quad  Lecture <>  \quad \rule[3pt]{3cm}{0.5pt}}
+          \fancyhead[C]{\rule[3pt]{3cm}{0.5pt} \quad  Lecture <>  \quad \rule[3pt]{3cm}{0.5pt}}
         ]],
 			{
 				i(1),

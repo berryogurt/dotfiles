@@ -35,7 +35,7 @@ return {
 	}, fmta([[\mathbb R]], {})),
 	s(
 		{
-			trig = "R([nmk%d])",
+			trig = "R([nmkd%d])",
 			name = "Mathbb R",
 			regTrig = true,
 			snippetType = "autosnippet",
@@ -74,13 +74,26 @@ return {
 		),
 		{ condition = in_mathzone }
 	),
-	-- s(
-	--   { trig = "(%a)bb", name = "Blackboard Math", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
-	--   { t("\\mathbb "), f(function(_, snip)
-	--     return snip.captures[1]
-	--   end), t(" ") },
-	--   { condition = in_mathzone }
-	-- ),
+	s(
+		{
+			trig = "(%w)bb",
+			name = "Blackboard Math",
+			regTrig = true,
+			wordTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \mathbb <> 
+  ]],
+			{
+				f(function(_, snip)
+					return snip.captures[1]
+				end),
+			}
+		)
+	),
 
 	-- Common Styled Letters, Rational, Real, Probability, Borel Set, Filter
 	s(
@@ -261,10 +274,11 @@ return {
 		{
 			trig = "C oo",
 			name = "C infinity",
-			wordTrig = true,
+			wordTrig = false,
 			regTrig = false,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
+			priority = 9999,
 		},
 		fmta(
 			[[
@@ -275,7 +289,7 @@ return {
 	),
 	s(
 		{
-			trig = "(%a)bf",
+			trig = "(%w)bf",
 			name = "Math Bold Font",
 			wordTrig = false,
 			regTrig = true,

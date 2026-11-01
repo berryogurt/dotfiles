@@ -22,11 +22,12 @@ if vim.g.colors_name == "everforest" then
 	vim.api.nvim_set_hl(0, "texMathZone", { fg = blue }) -- blue
 	vim.api.nvim_set_hl(0, "Conceal", { fg = blue }) -- blue
 	vim.api.nvim_set_hl(0, "texCmdGreek", { fg = blue })
-	vim.api.nvim_set_hl(0, "texMathCmd", { fg = green }) -- \cos \sin etc
+	vim.api.nvim_set_hl(0, "texMathCmd", { fg = aqua }) -- \cos \sin etc
 	vim.api.nvim_set_hl(0, "texMathDelim", { fg = orange })
 	vim.api.nvim_set_hl(0, "texMathSuperSub", { fg = orange })
-	vim.api.nvim_set_hl(0, "texMathOper", { fg = green })
-	vim.api.nvim_set_hl(0, "texMathSymbol", { fg = green })
+	vim.api.nvim_set_hl(0, "texMathOper", { fg = aqua })
+	vim.api.nvim_set_hl(0, "texMathSymbol", { fg = aqua })
 	vim.api.nvim_set_hl(0, "texSpecialChar", { fg = orange }) -- \\ and others
 	vim.api.nvim_set_hl(0, "SpecialChar", { fg = red }) -- & \\
+	vim.api.nvim_set_hl(0, "texMathZoneEnsured", { fg = red }) -- & \\
 end

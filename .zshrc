@@ -3,6 +3,7 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export AMPL_LICFILE=$HOME/.local/ampl.linux-intel64/ampl.lic
 export AMPLKEY_RUNTIME_DIR=$HOME/.local/ampl.linux-intel64
 export PATH=$HOME/.local/ampl.linux-intel64/:$PATH
+export PATH=$HOME/.local/matlab/bin/:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -108,7 +109,7 @@ alias q="exit"
 alias ssh="kitten +kitty ssh"
 alias install="sudo dnf install"
 alias uninstall="sudo dnf remove"
-alias update="sudo dnf upgrade"
+alias update="sudo dnf --skip-unavailable upgrade"
 alias c="clear"
 alias add="git add . && git status"
 alias com="git commit -m 'express commit'"

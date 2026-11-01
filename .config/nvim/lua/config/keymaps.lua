@@ -237,9 +237,9 @@ wk.add({
 	{
 		"<leader>fe",
 		function()
-			Snacks.explorer()
+			Snacks.explorer({ cwd = vim.loop.cwd(), hidden = true })
 		end,
-		desc = "File Explorer",
+		desc = "File Explorer (cwd)",
 		icon = { icon = "󰷏 " },
 	},
 	{

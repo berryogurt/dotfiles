@@ -1,4 +1,6 @@
----@diagnostic disable global: ls, s, sn, t, i, f, c, d, r, l, rep, p, m, n, dl, fmt, fmta, types, conds, conds_expand
+---@diagnostic disable global: ls, s, sn, t, i, f, c, d, r, l, rep, p, m, n, dl, fmt, fmta, types, conds
+
+local conds_expand = require("luasnip.extras.conditions.expand")
 
 -- Math zone context
 -- taken from https://ejmastnak.com/
@@ -9,6 +11,70 @@ end
 
 return {
 	-- Math symbols
+	s(
+		{
+			trig = "~=",
+			name = "Homeomorphism",
+			wordTrig = false,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \simeq 
+  ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "~~",
+			name = "Sim tilde",
+			wordTrig = false,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \sim 
+  ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = "==",
+			name = "Equivalent",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \equiv 
+  ]],
+			{}
+		)
+	),
+	s(
+		{
+			trig = ";E",
+			name = "Exists",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \exists 
+  ]],
+			{}
+		)
+	),
 	s(
 		{ trig = "`o", name = "Circ", wordTrig = false, snippetType = "autosnippet" },
 		fmta(
@@ -113,18 +179,19 @@ return {
 	),
 	s(
 		{
-			trig = "b|",
-			name = "Big vertical bar",
-			wordTrig = false,
+			trig = "res",
+			name = "Restriction",
+			desc = "Big vertical bar with subscript",
+			wordTrig = true,
 			regTrig = false,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
 		},
 		fmta(
 			[[
-\big| 
+\big|_{<>} 
         ]],
-			{}
+			{ i(1) }
 		)
 	),
 	s(
@@ -177,8 +244,9 @@ return {
 		{
 			trig = "in",
 			name = "In Set",
+			wordTrig = true,
 			snippetType = "autosnippet",
-			condition = in_mathzone,
+			condition = in_mathzone * conds_expand.trigger_not_preceded_by("\\"),
 		},
 		fmta(
 			[[
@@ -189,9 +257,25 @@ return {
 	),
 	s(
 		{
+			trig = ";ox",
+			name = "OTimes",
+			wordTrig = false,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+          \otimes 
+        ]],
+			{}
+		)
+	),
+	s(
+		{
 			trig = ";x",
 			name = "Times",
-			wordTrig = true,
+			wordTrig = false,
 			regTrig = false,
 			snippetType = "autosnippet",
 			condition = in_mathzone,
@@ -371,6 +455,18 @@ return {
 		{ condition = in_mathzone }
 	),
 	-- Latex Math Environments
+	s(
+		{ trig = "matrix", name = "Matrix without Delimiters", snippetType = "snippet" },
+		fmta(
+			[[
+    \begin{matrix}
+      <>
+    \end{matrix}
+    ]],
+			{ i(0) }
+		),
+		{ condition = in_mathzone }
+	),
 	s(
 		{ trig = "pmatrix", name = "Matrix with Parentheses", snippetType = "snippet" },
 		fmta(
@@ -714,18 +810,19 @@ return {
           \sqrt{<>} 
         ]],
 			{
-				d(1, function(_, snip)
-					local input = snip.captures[1]
-					if input == "(" then
-						return sn(nil, { t("("), i(1), t(")") })
-					elseif input == "{" then
-						return sn(nil, { t("\\{"), i(1), t("\\}") })
-					elseif input == "[" then
-						return sn(nil, { t("["), i(1), t("]") })
-					else
-						return sn(nil, t(input))
-					end
-				end),
+				i(1),
+				-- d(1, function(_, snip)
+				-- 	local input = snip.captures[1]
+				-- 	if input == "(" then
+				-- 		return sn(nil, { t("("), i(1), t(")") })
+				-- 	elseif input == "{" then
+				-- 		return sn(nil, { t("\\{"), i(1), t("\\}") })
+				-- 	elseif input == "[" then
+				-- 		return sn(nil, { t("["), i(1), t("]") })
+				-- 	else
+				-- 		return sn(nil, t(input))
+				-- 	end
+				-- end),
 			}
 		)
 	),
@@ -772,7 +869,11 @@ return {
 		{ condition = in_mathzone }
 	),
 	s(
-		{ trig = "lim", name = "Limit", snippetType = "autosnippet" },
+		{
+			trig = "lim",
+			name = "Limit",
+			snippetType = "autosnippet",
+		},
 		fmta(
 			[[
     \lim_{<>} <>
@@ -806,7 +907,12 @@ return {
 		)
 	),
 	s(
-		{ trig = "inf", name = "Infimum", snippetType = "autosnippet" },
+		{
+			trig = "ifm",
+			name = "Infimum",
+			snippetType = "autosnippet",
+			priority = 9999,
+		},
 		fmta(
 			[[
     \inf_{<>} <>
@@ -826,13 +932,13 @@ return {
 		{ condition = in_mathzone }
 	),
 	s({
-		trig = "[^%\\%i]int",
+		trig = "rint",
 		name = "Integral",
 		wordTrig = false,
 		regTrig = true,
 		snippetType = "autosnippet",
 		condition = in_mathzone,
-	}, fmta([[<>\int_{<>}^{<>} <>]], { t(" "), i(1, "lower"), i(2, "upper"), i(0) })),
+	}, fmta([[\int_{<>}^{<>} <>]], { i(1, "lower"), i(2, "upper"), i(0) })),
 	s(
 		{ trig = "ddx", name = "Derivative", snippetType = "autosnippet" },
 		fmta(

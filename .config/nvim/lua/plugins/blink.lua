@@ -52,9 +52,9 @@ return {
 								if ctx.source_id == "lsp" and string.len(desc) > 20 then
 									local len = string.len(desc)
 									local ret = (
-										string.sub(desc, 1, 3)
+										string.sub(desc, 1, 6)
 										.. "󰇘"
-										.. string.sub(desc, math.max(len - 16, 0), len)
+										.. string.sub(desc, math.max(len - 12, 0), len)
 									)
 									return ret
 								else

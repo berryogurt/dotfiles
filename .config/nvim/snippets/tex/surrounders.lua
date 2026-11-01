@@ -68,16 +68,17 @@ return {
 		{
 			trig = "lr(",
 			name = "Left Right Parentheses",
+			wordTrig = false,
 			snippetType = "autosnippet",
 			priority = 9999,
+			condition = in_mathzone,
 		},
 		fmta(
 			[[
     \left( <> \right) <>
     ]],
 			{ i(1), i(0) }
-		),
-		{ condition = in_mathzone }
+		)
 	),
 	s(
 		{
@@ -128,6 +129,7 @@ return {
 			trig = "lr<",
 			name = "Left Right Angled Bracket",
 			snippetType = "autosnippet",
+			wordTrig = false,
 		},
 		fmta(
 			[[
