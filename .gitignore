@@ -30,3 +30,6 @@
 #
 # # ~/.config/zathura Directory
 # !.config/zathura
+
+.fonts/*
+!.fonts/IntoneMonoNerdFont-*.ttf
