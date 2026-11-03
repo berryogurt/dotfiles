@@ -19,11 +19,11 @@ return {
 				"stylua", -- fmt: lua
 				"bashls", -- lsp: zsh bash
 				-- "shfmt", -- fmt: zsh bash
-				"jedi_language_server", -- lsp: python
-				"yamlls", -- lsp: YAML
+				-- "jedi_language_server", -- lsp: python
+				-- "yamlls", -- lsp: YAML
 				"texlab", -- lsp: latex
 				"marksman", -- lsp: markdown
-				"matlab_ls", -- lsp: matlab
+				-- "matlab_ls", -- lsp: matlab
 			},
 		},
 	},

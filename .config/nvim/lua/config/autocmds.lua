@@ -1,11 +1,11 @@
 ---@diagnostic disable global: vim
 -- LSP Formatting on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		require("conform").format({ bufnr = args.buf })
-	end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	pattern = "*",
+-- 	callback = function(args)
+-- 		require("conform").format({ bufnr = args.buf })
+-- 	end,
+-- })
 
 -- Create function for snippet reloading
 vim.api.nvim_create_user_command("LuaSnipLoad", function()

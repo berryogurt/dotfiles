@@ -11,7 +11,7 @@ return {
 				split_width = 30,
 			}
 
-			vim.g.vimtex_indent_enabled = 1 -- disable because latexindent is used
+			vim.g.vimtex_indent_enabled = 0 -- disable because latexindent is used
 			vim.g.vimtex_indent_on_ampersands = 0
 			vim.g.vimtex_mappings_enabled = 1 -- These are the ones starting with <localleader>
 			vim.g.vimtex_complete_enabled = 0
@@ -28,7 +28,7 @@ return {
 	         \ 'align*' : 'equation',
 	         \ 'equation': '$',
 	         \}]])
-			vim.cmd("let g:vimtex_quickfix_ignore_filters = ['Label(s) may have changed']")
+			-- vim.cmd("let g:vimtex_quickfix_ignore_filters = ['Label(s) may have changed']")
 			-- vim.g.vimtex_mappings_disable = { ["n"] = { "K" } }
 			-- disable `K` as it conflicts with LSP hover
 			-- vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"

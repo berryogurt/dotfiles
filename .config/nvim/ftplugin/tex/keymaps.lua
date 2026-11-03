@@ -29,6 +29,11 @@ wk.add({
 	{ "<localleader>c", "<plug>(vimtex-clean)", desc = "Clean" },
 	{ "<localleader>C", "<plug>(vimtex-clean-full)", desc = "Clean Full" },
 	{ "<localleader>e", "<plug>(vimtex-errors)", desc = "Errors" },
+	{
+		"<localleader>f",
+		'<cmd>lua require("conform").format({ formatters = { "latexindent", timeout_ms = 99999 } })<cr>',
+		desc = "Format (latexindent)",
+	},
 	{ "<localleader>g", "<plug>(vimtex-status)", desc = "Status" },
 	{ "<localleader>G", "<plug>(vimtex-status-all)", desc = "Status All" },
 	{ "<localleader>i", "<plug>(vimtex-info)", desc = "Info" },
