@@ -666,6 +666,16 @@ return {
 		{ trig = "cite", name = "Cite", snippetType = "snippet" },
 		fmta(
 			[[
+    \cite{<>}
+    ]],
+			{ i(1, "bibtex id") },
+			{ condition = not_in_mathzone }
+		)
+	),
+	s(
+		{ trig = "cite[pageno]", name = "Cite", snippetType = "snippet" },
+		fmta(
+			[[
     \cite[<>]{<>}
     ]],
 			{ i(1, "page info"), i(2, "bibtex id") },

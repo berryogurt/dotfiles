@@ -22,6 +22,11 @@ vim.keymap.set("n", "S", "", { buffer = true })
 pcall(vim.keymap.del, "n", "&") -- Add ampersand insertion shortcut
 vim.keymap.set("n", "&", "i&<esc>", { buffer = true })
 
+vim.api.nvim_create_user_command("TexFormat", function()
+	require("conform").format({ timeout_ms = 9999, formatters = { "latexindent" } })
+	vim.notify("Tex file formatted with latexindent!")
+end, {})
+
 -- Normal Mode
 wk.add({
 	-- <localleader>
@@ -29,11 +34,7 @@ wk.add({
 	{ "<localleader>c", "<plug>(vimtex-clean)", desc = "Clean" },
 	{ "<localleader>C", "<plug>(vimtex-clean-full)", desc = "Clean Full" },
 	{ "<localleader>e", "<plug>(vimtex-errors)", desc = "Errors" },
-	{
-		"<localleader>f",
-		'<cmd>lua require("conform").format({ formatters = { "latexindent", timeout_ms = 99999 } })<cr>',
-		desc = "Format (latexindent)",
-	},
+	{ "<localleader>f", "<cmd>TexFormat<cr>", desc = "Format file" },
 	{ "<localleader>g", "<plug>(vimtex-status)", desc = "Status" },
 	{ "<localleader>G", "<plug>(vimtex-status-all)", desc = "Status All" },
 	{ "<localleader>i", "<plug>(vimtex-info)", desc = "Info" },

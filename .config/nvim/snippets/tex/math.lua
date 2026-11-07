@@ -908,6 +908,42 @@ return {
 	),
 	s(
 		{
+			trig = "liin",
+			name = "liminf",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \liminf_{<>} 
+  ]],
+			{
+				i(1),
+			}
+		)
+	),
+	s(
+		{
+			trig = "lisu",
+			name = "limsup",
+			wordTrig = true,
+			regTrig = false,
+			snippetType = "autosnippet",
+			condition = in_mathzone,
+		},
+		fmta(
+			[[
+  \limsup_{<>} 
+  ]],
+			{
+				i(1),
+			}
+		)
+	),
+	s(
+		{
 			trig = "ifm",
 			name = "Infimum",
 			snippetType = "autosnippet",

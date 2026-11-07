@@ -11,7 +11,7 @@ return {
 				-- -- Conform will run the first available formatter
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
 				-- yaml = { "yamlfix" },
-				-- tex = { fallback = "never" },
+				tex = { "latexindent", fallback = "never" },
 			},
 			format_after_save = {
 				timeout_ms = 1000,

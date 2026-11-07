@@ -3,7 +3,7 @@
 rm -rfv \
   ~/.zshrc \
   ~/.bashrc \
-  ~/.indentconfig.yaml \
+  ~/indentconfig.yaml \
   ~/.config/nvim/ \
   ~/.config/kitty \
   ~/.config/zathura/ \
@@ -12,7 +12,7 @@ rm -rfv \
 
 ln -sfnv ~/dotfiles/.zshrc ~/
 ln -sfnv ~/dotfiles/.bashrc ~/
-ln -sfnv ~/dotfiles/.indentconfig.yaml ~/
+ln -sfnv ~/dotfiles/indentconfig.yaml ~/
 ln -sfnv ~/dotfiles/.config/nvim ~/.config
 ln -sfnv ~/dotfiles/.config/kitty ~/.config
 ln -sfnv ~/dotfiles/.config/zathura ~/.config
